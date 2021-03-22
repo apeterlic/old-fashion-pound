@@ -41,7 +41,7 @@ class AdditionOperationTest {
         log.info("<< testSum_Ok()");
     }
 
-    @DisplayName("SUM - OK")
+    @DisplayName("SUM (add pound) - OK")
     @Test
     void testSum_AddPound_Ok() {
         log.info(">> testSum_AddPound_Ok()");

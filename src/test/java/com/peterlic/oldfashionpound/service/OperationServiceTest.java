@@ -2,10 +2,10 @@ package com.peterlic.oldfashionpound.service;
 
 import com.peterlic.oldfashionpound.exception.BadRequestException;
 import com.peterlic.oldfashionpound.exception.NotAllowedException;
+import com.peterlic.oldfashionpound.operation.AdditionOperation;
 import com.peterlic.oldfashionpound.operation.DivisionOperation;
 import com.peterlic.oldfashionpound.operation.MultiplicationOperation;
 import com.peterlic.oldfashionpound.operation.SubtractionOperation;
-import com.peterlic.oldfashionpound.operation.AdditionOperation;
 import com.peterlic.oldfashionpound.util.ValidatorUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;

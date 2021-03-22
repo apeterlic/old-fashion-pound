@@ -79,4 +79,14 @@ public class PriceModel {
             }
         }
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("PriceModel{");
+        sb.append("pounds=").append(pounds);
+        sb.append(", shillings=").append(shillings);
+        sb.append(", pence=").append(pence);
+        sb.append('}');
+        return sb.toString();
+    }
 }
