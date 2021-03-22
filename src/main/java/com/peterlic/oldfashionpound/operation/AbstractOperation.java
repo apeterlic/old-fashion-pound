@@ -3,6 +3,8 @@ package com.peterlic.oldfashionpound.operation;
 import com.peterlic.oldfashionpound.model.PriceModel;
 import com.peterlic.oldfashionpound.model.PriceType;
 import com.peterlic.oldfashionpound.util.ConstantUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class that represents abstract operation.
@@ -12,6 +14,8 @@ import com.peterlic.oldfashionpound.util.ConstantUtil;
  * @author Ana Peterlić
  */
 public abstract class AbstractOperation<T, D> {
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     /**
      * Abstract method used for executing specific operation.
@@ -35,10 +39,13 @@ public abstract class AbstractOperation<T, D> {
      * @return
      */
     public String createResult(int resultInPence) {
+        log.trace(">> createResult() > resultInPence: {}", resultInPence);
         int pounds = resultInPence / ConstantUtil.PENCE_IN_POUND;
         int shillings = (resultInPence - (pounds * ConstantUtil.PENCE_IN_POUND)) / ConstantUtil.PENCE_IN_SHILLING;
         int pence = (resultInPence - (pounds * ConstantUtil.PENCE_IN_POUND)) - (shillings * ConstantUtil.PENCE_IN_SHILLING);
-        return createStringFromResult(pounds, shillings, pence);
+        String result = createStringFromResult(pounds, shillings, pence);
+        log.trace("<< createResult() < result: {}", result);
+        return result;
     }
 
     /**
@@ -47,14 +54,16 @@ public abstract class AbstractOperation<T, D> {
      * @param pounds    pounds value
      * @param shillings shillings value
      * @param pence     pence value
-     * @return
+     * @return result in string
      */
     private String createStringFromResult(int pounds, int shillings, int pence) {
-        StringBuilder sb = new StringBuilder();
-        appendData(sb, pounds, PriceType.POUND);
-        appendData(sb, shillings, PriceType.SHILLING);
-        appendData(sb, pence, PriceType.PENCE);
-        return sb.toString();
+        log.trace(">> createStringFromResult() > pounds: {}, shillings: {}, pence: {}", pounds, shillings, pence);
+        StringBuilder stringResult = new StringBuilder();
+        appendData(stringResult, pounds, PriceType.POUND);
+        appendData(stringResult, shillings, PriceType.SHILLING);
+        appendData(stringResult, pence, PriceType.PENCE);
+        log.trace("<< createStringFromResult() < result: {}", stringResult);
+        return stringResult.toString();
     }
 
     void appendData(StringBuilder sb, int number, PriceType priceType) {
